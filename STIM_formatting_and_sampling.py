@@ -6,7 +6,7 @@ using Stim, decodes with both the Worm decoder (via Julia) and MWPM (via
 PyMatching).
 
 The Worm decoder is called as a subprocess running a Julia script
-(ML_decoder_new.jl). Communication between Python and Julia is handled through
+(worm_decoder.jl). Communication between Python and Julia is handled through
 temporary JSON files containing the detector error model (DEM) and syndrome
 data.
 
