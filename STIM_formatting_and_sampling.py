@@ -3,7 +3,7 @@ STIM_formatting_and_sampling.py
 --------------------------------------
 Generates syndrome data for the rotated surface code with measurement errors
 using Stim, decodes with both the Worm decoder (via Julia) and MWPM (via
-PyMatching).
+PyMatching), and writes the results to a CSV file.
 
 The Worm decoder is called as a subprocess running a Julia script
 (worm_decoder.jl). Communication between Python and Julia is handled through
@@ -132,6 +132,7 @@ def Adj_to_a_surface_code(Adj_: list, n_nodes: int, n_logicals: int) -> tuple:
 
 
 
+
 def dem_logical_edges_surface_code(dem: stim.DetectorErrorModel, n_nodes: int) -> list:
     """
     Extract logical edges from a DEM for the surface code.
@@ -161,8 +162,6 @@ def dem_logical_edges_surface_code(dem: stim.DetectorErrorModel, n_nodes: int) -
         elif len(detectors) == 1:
             logical_edges.append([detectors[0] + 1, n_nodes + 1])
     return logical_edges
-
-
 
 
 
@@ -251,11 +250,11 @@ t_therm  = 10000     # Worm thermalisation time (MCMC steps before sampling)
 N_samples = 5000     # Number of Worm MCMC samples per syndrome
 num_shots = 1        # Number of syndrome shots per p value
 
-p_list = [0.025,0.03]    # Physical error rates to simulate
+p_list = [0.0225]    # Physical error rates to simulate
 
 # Path to the Julia Worm decoder script and project environment.
 # Update these to match your local setup before running.
-JULIA_SCRIPT   = "path/to/worm_decoder.jl"
+JULIA_SCRIPT   = "worm_decoder.jl"
 JULIA_PROJECT  = "path/to/.julia/environments/v1.11"
 
 # =============================================================================
