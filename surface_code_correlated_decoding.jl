@@ -1,3 +1,44 @@
+"""
+correlated_worm_decoder_parsing.jl
+-----------------------------------
+Implements correlated worm MCMC decoding with iterative X↔Z parsing for the
+rotated surface code (RSC) under depolarizing noise.
+
+For each syndrome realisation the decoder:
+  1. Decodes Z errors with the worm MCMC to obtain soft per-edge marginal
+     Z error probabilities.
+  2. Reweights the X decoding graph using the soft Z marginals to account
+     for Y-error correlations.
+  3. Decodes X errors with the worm MCMC using the reweighted graph, and
+     extracts soft per-edge marginal X error probabilities.
+  4. Repeats steps 2–4 for N_parse iterations, passing updated soft
+     marginals in both directions at each step (parsing).
+
+Four decoders are benchmarked in parallel for each realisation:
+  - Uncorrelated MWPM          (X and Z decoded independently)
+  - Correlated MWPM            (X graph reweighted by Z MWPM hard decision)
+  - Uncorrelated worm MLD      (worm decoder with uniform weights)
+  - Correlated worm MLD        (worm decoder with iterative X↔Z reweighting)
+
+Simulation parameters (set in script):
+  L_list   : list of code distances to simulate (L must be odd)
+  p_list   : list of depolarizing error rates
+  N_real   : Monte Carlo realisations per (L, p)
+  N_samp   : worm MCMC samples per syndrome per decoder call
+  t_auto   : worm steps between samples (autocorrelation time)
+  N_parse  : number of X↔Z parsing iterations - has to be 5 for this code, but can be straightforwardly adapated if needed.
+
+Output:
+  One DataFrame object per (L, p), with columns:
+    MWPM_correlated_success, MWPM_uncorrelated_success,
+    Worm_uncorrelated_decoding_success,
+    Worm_parse_1, …, Worm_parse_5
+
+Dependencies:
+  Random, LinearAlgebra, CSV, DataFrames, Graphs, PyCall (networkx)
+"""
+
+
 using Random
 using LinearAlgebra
 using CSV
