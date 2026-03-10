@@ -3,7 +3,7 @@
 This repository contains simulation data and decoding code accompanying the paper:
 
 > **Optimal Decoding with the Worm**  
-> Zac Tobias et al. (2026)  
+> Zac Tobias, Nikolas P. Breuckmann, and Benedikt Placke (2026)  
 > [arXiv:2603.05428](https://arxiv.org/abs/2603.05428)
 
 ---
@@ -23,10 +23,10 @@ This repository contains simulation data and decoding code accompanying the pape
 ```
 data/
 ├── hyperbolic_decoding_graphs/
-├── Rotated_surface_code_measure...csv
-├── correl_decoding_threshold_data...csv
-├── correlated_decoding_comparisi...csv
-├── correlated_decoding_parsing_da...csv
+├── Rotated_surface_code_measurement_erorrs.csv
+├── correl_decoding_threshold_data.csv
+├── correlated_decoding_comparisison_L21.csv
+├── correlated_decoding_parsing_data.csv
 ├── hyp_MWPM_comp_data.csv
 └── hyperbolic_sc_threshold_data.csv
 ```
@@ -39,7 +39,7 @@ data/
 | `n` | Number of data qubits |
 | `k` | Number of encoded logical qubits |
 | `p` | Physical error rate |
-| `N_samples` | Number of Monte Carlo samples |
+| `N_samples` | Number of error realizations |
 | `N_errors` | Number of logical errors observed |
 | `logical_error_rate` | Logical error rate estimate |
 | `logical_error_rate_2sigma` | 2σ uncertainty on logical error rate |
@@ -86,21 +86,12 @@ into the designated section of `worm_decoder_hyperbolic_sc.jl`, then run:
 julia worm_decoder_hyperbolic_sc.jl
 ```
 
-**Correlated worm decoder (RSC, depolarizing noise):**
-```bash
-julia surface_code_correlated_decoding.jl
-```
-
----
-
 ## Python code
 
 ### Requirements
 
-Python ≥ 3.9 with `stim` and `numpy`. Install via:
-```bash
-pip install stim numpy
-```
+Python ≥ 3.9 with `stim` and `numpy`. 
+
 
 ### Files
 
@@ -115,7 +106,7 @@ pip install stim numpy
 ```bibtex
 @article{tobias2026worm,
   title   = {Optimal Decoding with the Worm},
-  author  = {Tobias, Zac and others},
+  author  = {Tobias, Zac and Breuckmann, Nikolas P. and Placke, Benedikt},
   journal = {arXiv preprint arXiv:2603.05428},
   year    = {2026},
   url     = {https://arxiv.org/abs/2603.05428}
