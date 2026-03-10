@@ -91,11 +91,13 @@ Python ≥ 3.9 with `stim` and `numpy`.
 ## Citation
 
 ```bibtex
-@article{tobias2026worm,
-  title   = {Optimal Decoding with the Worm},
-  author  = {Tobias, Zac and Breuckmann, Nikolas P. and Placke, Benedikt},
-  journal = {arXiv preprint arXiv:2603.05428},
-  year    = {2026},
-  url     = {https://arxiv.org/abs/2603.05428}
+@misc{tobias2026optimaldecodingworm,
+      title={Optimal Decoding with the Worm}, 
+      author={Zac Tobias and Nikolas P. Breuckmann and Benedikt Placke},
+      year={2026},
+      eprint={2603.05428},
+      archivePrefix={arXiv},
+      primaryClass={quant-ph},
+      url={https://arxiv.org/abs/2603.05428}, 
 }
 ```
