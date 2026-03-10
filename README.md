@@ -31,19 +31,6 @@ data/
 └── hyperbolic_sc_threshold_data.csv
 ```
 
-### CSV columns
-
-| Column | Description |
-|--------|-------------|
-| `L` | Code distance (surface code) |
-| `n` | Number of data qubits |
-| `k` | Number of encoded logical qubits |
-| `p` | Physical error rate |
-| `N_samples` | Number of error realizations |
-| `N_errors` | Number of logical errors observed |
-| `logical_error_rate` | Logical error rate estimate |
-| `logical_error_rate_2sigma` | 2σ uncertainty on logical error rate |
-
 The `hyperbolic_decoding_graphs/` subdirectory contains adjacency lists and logical
 operator edge sets for each hyperbolic surface code instance, labelled by `[[n,k,d]]`
 parameters.
