@@ -63,20 +63,20 @@ Julia ≥ 1.9 with the following packages: `Random`, `LinearAlgebra`, `CSV`, `Da
 
 | File | Description |
 |------|-------------|
-| `Worm_decoder.jl` | Worm MCMC decoder for matchable qLDPC codes. Takes a DEM JSON and syndrome JSON as command-line arguments; outputs per-syndrome corrections and MLD probability estimates to stdout. |
+| `Worm_decoder.jl` | Worm MCMC decoder for matchable qLDPC codes. Takes a DEM JSON and syndrome JSON as command-line arguments; outputs per-syndrome corrections and MLD probability estimates to stdout. Intended to be called from `STIM_formatting_and_sampling.py`. |
 | `worm_decoder_hyperbolic_sc.jl` | Worm MCMC decoder for hyperbolic surface codes. Decoding graph and logical operators are specified directly as adjacency lists (see `data/hyperbolic_decoding_graphs/`). |
 | `surface_code_correlated_decoding.jl` | Correlated worm decoder for the rotated surface code (RSC) under depolarizing noise, with iterative X↔Z parsing. Benchmarks against uncorrelated MWPM, correlated MWPM, and uncorrelated worm. |
 
 ### Running a simulation
 
-Each script is self-contained. Simulation parameters (`L_list`, `p_list`, `N_real`,
-`N_samp`, `t_auto`, etc.) are set as named constants near the top of each file.
-Set `output_folder` to your desired output path before running.
+Simulation parameters (`L_list`, `p_list`, `N_real`, `N_samp`, `t_auto`, etc.) are set
+as named constants near the top of each file. Set `output_folder` to your desired output
+path before running.
 
-**Worm decoder (surface code / generic qLDPC):**
-```bash
-julia Worm_decoder.jl path/to/dem.json path/to/syndromes.json
-```
+**Worm decoder (surface code):**
+
+`Worm_decoder.jl` is called automatically by `STIM_formatting_and_sampling.py` — see
+[Python code](#python-code) below.
 
 **Worm decoder (hyperbolic surface codes):**
 
@@ -90,8 +90,6 @@ julia worm_decoder_hyperbolic_sc.jl
 ```bash
 julia surface_code_correlated_decoding.jl
 ```
-
-Output is one CSV file per `(L, p)`, written to `output_folder`.
 
 ---
 
@@ -108,7 +106,7 @@ pip install stim numpy
 
 | File | Description |
 |------|-------------|
-| `STIM_formatting_and_sampling.py` | Generates rotated surface code Stim circuits, samples syndromes, and calls `Worm_decoder.jl` via subprocess. Outputs logical error rates for a sweep over code distances and error rates. |
+| `STIM_formatting_and_sampling.py` | Generates rotated surface code Stim circuits, samples syndromes, and calls `Worm_decoder.jl` via subprocess for a sweep over code distances and error rates. |
 
 ---
 
